@@ -34,46 +34,6 @@
       "name": "Курсы",
       "colorId": 7,
       "id": 7
-    },
-    {
-      "name": "6666666",
-      "colorId": 3,
-      "id": 10
-    },
-    {
-      "name": "jhjhjvujv",
-      "colorId": 3,
-      "id": 11
-    },
-    {
-      "name": "888888",
-      "colorId": 4,
-      "id": 12
-    },
-    {
-      "name": "6666",
-      "colorId": 3,
-      "id": 13
-    },
-    {
-      "name": "66666666666666",
-      "colorId": 5,
-      "id": 14
-    },
-    {
-      "name": "77777777",
-      "colorId": 3,
-      "id": 15
-    },
-    {
-      "name": "55555",
-      "colorId": 3,
-      "id": 16
-    },
-    {
-      "name": "666666",
-      "colorId": 6,
-      "id": 17
     }
   ],
   "tasks": [
@@ -102,22 +62,10 @@
       "completed": false
     },
     {
-      "listId": 2,
-      "text": "123",
-      "completed": true,
-      "id": 5
-    },
-    {
       "listId": 4,
       "text": "Купить 1984!",
       "completed": true,
       "id": 10
-    },
-    {
-      "listId": 2,
-      "text": "222",
-      "completed": true,
-      "id": 12
     },
     {
       "listId": 7,
