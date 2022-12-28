@@ -42,7 +42,7 @@ const Tasks = ({list, onEditTitle, onAddTask, onRemoveTask, onEditTask, withoutE
                         />
                     )) }
 
-                <AddTaskForm list = {list} onAddTask = {onAddTask}/>
+                <AddTaskForm key={list.id} list = {list} onAddTask = {onAddTask}/>
             </div>
         </div>
     );
