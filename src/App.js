@@ -92,12 +92,11 @@ function App() {
                 })
         }
     }
-
     return (
         <div className="todo">
             <div className="todo__sidebar">
                 <List items={[
-                    { active: true,
+                    { active: !activeItem,
                         icon: (
                             <svg
                             width="18"
