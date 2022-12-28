@@ -127,13 +127,15 @@ function App() {
                 <AddList onAdd={onAddList} colors={colors} />
             </div>
             <div className="todo__tasks">
-                   {lists && activeItem &&
-                        <Tasks list={activeItem}
-                               onAddTask = {onAddTask}
-                               onEditTitle = {onEditTitle}
-                               onRemoveTask={onRemoveTask}
-                               onEditTask = {onEditTask}
-                        />}
+                   {lists && activeItem && (
+                       <Tasks list={activeItem}
+                              onAddTask = {onAddTask}
+                              onEditTitle = {onEditTitle}
+                              onRemoveTask={onRemoveTask}
+                              onEditTask = {onEditTask}
+                              withoutEmpty
+                       />
+                       )}
             </div>
         </div>
     );
