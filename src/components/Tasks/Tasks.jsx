@@ -4,8 +4,9 @@ import editSvg from "../../assets/img/edit.svg";
 
 import axios from "axios";
 import AddTaskForm from "./AddTaskForm";
+import Task from "./Task";
 
-const Tasks = ({list, onEditTitle, onAddTask}) => {
+const Tasks = ({list, onEditTitle, onAddTask, onRemoveTask, onEditTask, withoutEmpty}) => {
 
     const editTitle = () => {
         const newTitle = window.prompt('Название списка', list.name)
@@ -21,30 +22,24 @@ const Tasks = ({list, onEditTitle, onAddTask}) => {
         }
     }
 
+
     return (
         <div className="tasks">
-            <h2 className="tasks__title">
+            <h2 style={{color: list.color.hex}} className="tasks__title">
                 {list.name}
                 <img onClick={editTitle} src={editSvg} alt="Edit icon"/>
             </h2>
 
             <div className="tasks__items">
-                {!list.tasks.length && <h2>Задачи отсутствуют</h2>}
+                {!withoutEmpty && !list.tasks.length && <h2>Задачи отсутствуют</h2>}
 
                 {list.tasks.map(task => (
-                        <div key={task.id} className="tasks__items-row">
-                            <div className="checkbox">
-                                <input id={`task-${task.id}`} type="checkbox"/>
-                                <label htmlFor={`task-${task.id}`}>
-                                    <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.29999 1.20001L3.79999 6.70001L1.29999 4.20001" stroke="#000" strokeWidth="1.5"
-                                              strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                </label>
-
-                            </div>
-                            <input readOnly value={task.text}/>
-                        </div>
+                        <Task key = {task.id}
+                              list = {list}
+                              {...task}
+                              onRemoveTask={onRemoveTask}
+                              onEditTask = {onEditTask}
+                        />
                     )) }
 
                 <AddTaskForm list = {list} onAddTask = {onAddTask}/>

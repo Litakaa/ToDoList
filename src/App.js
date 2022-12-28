@@ -51,6 +51,48 @@ function App() {
         setLists(newLists);
     }
 
+
+    const onEditTask = (listId, taskObj) => {
+        const newTaskText = window.prompt('Текст задачи', taskObj.text)
+        if (!newTaskText) {
+            return;
+        }
+        const newList = lists.map(item => {
+                if(item.id === listId) {
+                    item.tasks = item.tasks.map(task => {
+                        if (task.id === taskObj.id) {
+                            task.text = newTaskText
+                        }
+                        return task;
+                    });
+                }
+                return item;
+            });
+            setLists(newList);
+            axios
+                .patch('http://localhost:3001/tasks/' + taskObj.id,{text: newTaskText} )
+                .catch(() => {
+                    alert('Не удалось отредактировать задачу')
+                });
+    }
+
+    const onRemoveTask = (listId,taskId) => {
+        if(window.confirm("Вы действительно хотите удалить задачу??")) {
+            const newList = lists.map(item => {
+                if(item.id === listId) {
+                    item.tasks = item.tasks.filter(task => task.id !== taskId);
+                }
+                return item;
+            })
+            setLists(newList);
+            axios
+                .delete('http://localhost:3001/tasks/' + taskId )
+                .catch(() => {
+                    alert('Не удалось удалить задачу')
+                })
+        }
+    }
+
     return (
         <div className="todo">
             <div className="todo__sidebar">
@@ -85,10 +127,14 @@ function App() {
                 )}
                 <AddList onAdd={onAddList} colors={colors} />
             </div>
-
-
             <div className="todo__tasks">
-                {lists && activeItem && <Tasks list={activeItem} onAddTask = {onAddTask} onEditTitle = {onEditTitle} />}
+                   {lists && activeItem &&
+                        <Tasks list={activeItem}
+                               onAddTask = {onAddTask}
+                               onEditTitle = {onEditTitle}
+                               onRemoveTask={onRemoveTask}
+                               onEditTask = {onEditTask}
+                        />}
             </div>
         </div>
     );
